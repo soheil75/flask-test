@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
+    {% with messages = get_flashed_messages(True) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message[0]}} mt-5" role="alert">
+                    {{message[1]}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 class="mt-5 pt-5">Register</h1>
+    <form action="{{ url_for('users.register') }}" method="post">
+        {{form.hidden_tag()}}
+        <div class="form-row my-5">
+            <div class="col">
+                Email:{{form.email(class_="form-control",placeholder="Email")}}
+                {% if form.email.errors%}
+                    {% for error in form.email.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col">
+                Fullname:{{form.fullname(class_="form-control",placeholder="Fullname")}}
+                {% if form.fullname.errors%}
+                    {% for error in form.fullname.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col">
+                Password:{{form.password(class_="form-control",placeholder="Password")}}
+                {% if form.password.errors%}
+                    {% for error in form.password.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col">
+                Confirm Password:{{form.confirm_password(class_="form-control",placeholder="Password")}}
+                {% if form.confirm_password.errors%}
+                    {% for error in form.confirm_password.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block w-25 mx-auto " type="submit">submit</button>
+    </form>
+{% endblock %}

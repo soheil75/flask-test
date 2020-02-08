@@ -1,10 +1,15 @@
-import MySQLdb
-def connection():
-    conn = MySQLdb.connect(
-        host = "localhost",
-        user = "root",
-        password = "Dotest123456",
-        db = "test_flask"
-    )
-    c = conn.cursor()
-    return c,conn
+import os
+
+class Config:
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', False)
+    SECRET_KEY = os.getenv('SECRET_KEY')
+
+
+class Development(Config):
+    DEBUG = True
+
+class Production(Config):
+    DEBUG = False
+
+

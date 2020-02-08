@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}Admin Loggin{% endblock %}
+{% block content %}
+    <div class="mt-5">
+        <h1>Admin Login</h1>
+        {% with messages = get_flashed_messages(True) %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message[0] == 'error'%}alert-danger{% elif message[0] == 'warning' %}alert-warning{% endif %}" role="alert">
+                            {{message[1]}}
+                        </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{url_for('admin.login')}}" method="POST">
+            <div class="form-row">
+                {{form.hidden_tag()}}
+                <div class="col">
+                    Email: {{form.email (class_="form-control",placeholder="Email")}}<br>
+                </div>
+                <div class="col">
+                    password:{{form.password(class_="form-control",placeholder="Password")}}<br>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block w-50 mx-auto " type="submit">submit</button>
+        </form>
+    </div>
+{% endblock %}

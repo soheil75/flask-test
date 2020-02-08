@@ -1,37 +1,20 @@
 from flask import Flask,render_template,request
-from config import connection
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from config import Development
 
 
 app = Flask(__name__)
+app.config.from_object(Development)
+db = SQLAlchemy(app)
+migrate = Migrate(app,db)
 
-@app.route('/')
-def index():
-    return render_template('home.html')
+from view import index, register, login
 
-@app.route('/register',methods=['POST'])
-def register():
-        c,conn = connection()
-        info = request.form
-        username = info['username']
-        password = info['password']
-        c.execute('INSERT INTO users (username,password) VALUES(?, ?)',(username, password))
-        conn.commit()
-        c.close()
-        return "ok"
     
+from model_admin import admin
+from model_users import users
 
-#@app.route('/login',methods=['POST'])
-#def login():
-#    try:
-#        c,conn = connection()
-#        info = request.form
-#        username = info['username']
-#        password = info['password']
-#        c.execute("SELECT * FROM users WHERE username = ? AND password = ? ,(username,password)")
-#        user = c.fetchone()
-#        if not user :
-#            return "ooops this user not exist"
-#        return f"welcome {user[1]}"
-#    except:
-#        print('false')
-#    return render_template('login.html')
+
+app.register_blueprint(admin)
+app.register_blueprint(users)
