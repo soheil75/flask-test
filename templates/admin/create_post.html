@@ -1,15 +1,6 @@
 {% extends 'admin/admin-layout.html' %}
 {% block title %}Create New Post{% endblock %}
 {% block page_content %}
-{% with messages = get_flashed_messages(True) %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{message[0]}} mt-5" role="alert">
-                {{message[1]}}
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
 
     <h1>Create New Post</h1>
 

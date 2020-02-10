@@ -1,0 +1,7 @@
+{% extends 'blog/layout.html' %}
+{% block title %}{{post.title}}{% endblock %}
+{% block page_content %}
+        <h1>{{post.title}}</h1>
+        {{ post.title }}
+        {{ post.summary }}
+{% endblock %}
