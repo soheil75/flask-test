@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block title %}admin-home{% endblock %}
+{% block content %}
+<ul>
+    <li><a href="{{url_for('admin.index')}}">Dasboard</a></li>
+    <li><a href="{{url_for('admin.create_post')}}">Add New Post</a></li>
+    <li><a href="{{url_for('admin.logout')}}">Logout</a></li>
+</ul>
+{% block page_content %}
+{% endblock %}
+{% endblock %}

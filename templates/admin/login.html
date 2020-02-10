@@ -4,14 +4,14 @@
     <div class="mt-5">
         <h1>Admin Login</h1>
         {% with messages = get_flashed_messages(True) %}
-            {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert {% if message[0] == 'error'%}alert-danger{% elif message[0] == 'warning' %}alert-warning{% endif %}" role="alert">
-                            {{message[1]}}
-                        </div>
-                    {% endfor %}
-            {% endif %}
-        {% endwith %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message[0]}} mt-5" role="alert">
+                    {{message[1]}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
         <form action="{{url_for('admin.login')}}" method="POST">
             <div class="form-row">
                 {{form.hidden_tag()}}
