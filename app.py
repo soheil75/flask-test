@@ -1,6 +1,7 @@
-from flask import Flask,render_template,request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_mail import Mail
 from config import Development
 
 
@@ -8,6 +9,7 @@ app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
+mail = Mail(app)
 
 from view import index
 
