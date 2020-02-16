@@ -1,7 +1,10 @@
 {% extends 'blog/layout.html' %}
 {% block title %}{{post.title}}{% endblock %}
 {% block page_content %}
-        <h1>{{post.title}}</h1>
-        {{ post.title }}
-        {{ post.summary }}
+        <div class="jumbotron">
+                <h1 class="display-4">{{post.title}}</h1>
+                <p class="lead">{{ post.summary }}</p>
+                <hr class="my-4">
+                <p>{{ post.content }}</p>
+        </div>
 {% endblock %}

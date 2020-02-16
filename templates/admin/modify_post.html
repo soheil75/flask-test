@@ -1,5 +1,5 @@
 {% extends 'admin/admin-layout.html' %}
-{% block title %}Create New Post{% endblock %}
+{% block title %}Modify {{post.title}}{% endblock %}
 {% block page_content %}
 <style>
     .form-check-input{
@@ -14,9 +14,9 @@
         margin: 10px 0;
     }
 </style>
-    <h1>Create New Post</h1>
+    <h1>Modify Post</h1>
 
-    <form action="{{url_for('admin.create_post')}}" method="POST">
+    <form action="{{url_for('admin.modify_post', post_id = post.id)}}" method="POST">
         {{form.hidden_tag()}}
         <div class="form-row my-5">
             Title:{{form.title(class_="form-control",placeholder="Title")}}
@@ -30,7 +30,7 @@
             <div class="form-check mt-4 col-12">
                 Categories:{{form.categories(class_="form-check-input")}}
             </div>
-
+        
         </div>
         <button class="btn btn-primary btn-block w-25 mx-auto " type="submit">Submit</button>
     </form>

@@ -15,8 +15,10 @@ from view import index
 from model_admin import admin
 from model_users import users
 from model_blog import blog
+from model_uploads import uploads
 
 
 app.register_blueprint(admin)
 app.register_blueprint(users)
 app.register_blueprint(blog)
+app.register_blueprint(uploads)

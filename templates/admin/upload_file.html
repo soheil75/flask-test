@@ -1,0 +1,15 @@
+{% extends 'admin/admin-layout.html' %}
+{% block title %}Upload File{% endblock %}
+{% block page_content %}
+
+    <h1>Upload File</h1>
+
+    <form action="{{url_for('admin.upload_file')}}" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        <div class="form-row my-5">
+            <label for="exampleFormControlFile1">File:</label>
+            {{form.file(class_="form-control-file",id_="exampleFormControlFile1")}}
+        </div>
+        <button class="btn btn-primary btn-block w-25 mx-auto " type="submit">Submit</button>
+    </form>
+{% endblock %}

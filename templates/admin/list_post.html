@@ -1,0 +1,51 @@
+{% extends 'admin/admin-layout.html' %}
+{% block title %}Post List{% endblock %}
+{% block page_content %}
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Summary</th>
+            <th scope="col">Category</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if posts %}
+            {% for post in posts %}
+                <tr>
+                    <th scope="row">{{post.id}}</th>
+                    <td><a href="{{url_for('blog.single_post',slug=post.slug)}}">{{post.title}}</a></td>
+                    <td>{{post.summary}}</td>
+                    <td>
+                        {% if post.categories != [] %}
+                            {% for category in post.categories %}
+                                {{category.name}}
+                            {% endfor %}
+                        {% endif %}
+
+                    </td>
+                    <td><a class="btn btn-warning" href="{{url_for('admin.modify_post',post_id=post.id)}}">Edit</a></td>
+                    <td><a class="btn btn-danger" href="{{url_for('admin.delete_post',post_id=post.id)}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
