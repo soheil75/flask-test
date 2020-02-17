@@ -9,6 +9,7 @@ class Config:
     MAIL_USE_SSL=os.getenv('MAIL_USE_SSL')
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    REDIS_SERVER_URL = os.getenv('REDIS_SERVER_URL')
 
 
 class Development(Config):
